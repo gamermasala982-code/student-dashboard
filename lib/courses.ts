@@ -14,16 +14,34 @@ export type Course = {
  * graceful fallback.
  */
 export async function getCourses(): Promise<Course[]> {
-  const supabase = await createClient()
-
-  const { data, error } = await supabase
-    .from("courses")
-    .select("id, title, progress, icon_name, created_at")
-    .order("created_at", { ascending: true })
-
-  if (error) {
-    throw new Error(`Failed to load courses: ${error.message}`)
-  }
-
-  return (data ?? []) as Course[]
+  return [
+    {
+      id: "1",
+      title: "Advanced React Patterns",
+      progress: 75,
+      icon_name: "Code",
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: "2",
+      title: "UI Design Fundamentals",
+      progress: 60,
+      icon_name: "Palette",
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: "3",
+      title: "Database Systems",
+      progress: 90,
+      icon_name: "Database",
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: "4",
+      title: "Machine Learning Basics",
+      progress: 45,
+      icon_name: "Brain",
+      created_at: new Date().toISOString(),
+    },
+  ]
 }
